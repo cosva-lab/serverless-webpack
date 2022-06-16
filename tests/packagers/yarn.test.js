@@ -9,7 +9,6 @@ const yarnModule = require('../../lib/packagers/yarn');
 
 jest.mock('../../lib/utils', () => {
   const original = jest.requireActual('../../lib/utils');
-  // eslint-disable-next-line lodash/prefer-lodash-method
   return Object.assign({}, original, {
     spawnProcess: jest.fn()
   });
