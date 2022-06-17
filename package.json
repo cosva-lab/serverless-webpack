@@ -7,7 +7,7 @@
   "author": "Frank Schmid <fschmid740@googlemail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/serverless-heaven/serverless-webpack.git"
+    "url": "git+https://github.com/cosva-lab/serverless-webpack.git"
   },
   "keywords": [
     "serverless",
@@ -24,11 +24,11 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/serverless-heaven/serverless-webpack/issues"
+    "url": "https://github.com/cosva-lab/serverless-webpack/issues"
   },
-  "homepage": "https://github.com/serverless-heaven/serverless-webpack#readme",
+  "homepage": "https://github.com/cosva-lab/serverless-webpack#readme",
   "scripts": {
-    "test": "jest --verbose --watch",
+    "test": "jest --verbose",
     "test-coverage": "jest --coverage",
     "eslint": "eslint ."
   },
