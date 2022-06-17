@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/serverless-heaven/serverless-webpack#readme",
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest --verbose --watch",
     "test-coverage": "jest --coverage",
     "eslint": "eslint ."
   },
@@ -36,6 +36,7 @@
     "archiver": "^5.3.1",
     "bluebird": "^3.7.2",
     "find-yarn-workspace-root": "^2.0.0",
+    "cli-progress": "^3.11.1",
     "fs-extra": "^9.1.0",
     "glob": "^7.2.3",
     "is-builtin-module": "^3.2.0",

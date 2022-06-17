@@ -5,7 +5,14 @@
  */
 
 const streamMock = {
-  on: jest.fn()
+  on: jest.fn(),
+  once: jest.fn(),
+  emit: jest.fn(),
+  write: jest.fn(),
+  end: jest.fn(),
+  pipe: jest.fn(),
+  destroy: jest.fn(),
+  close: jest.fn()
 };
 
 const statMock = {

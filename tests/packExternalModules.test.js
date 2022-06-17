@@ -126,7 +126,7 @@ describe('packExternalModules', () => {
         .resolves.toBeUndefined()
         .then(() =>
           BbPromise.all([
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(0),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(0),
             expect(packagerFactoryMock.get).toHaveBeenCalledTimes(0),
             expect(writeFileSyncStub).toHaveBeenCalledTimes(0)
           ])
@@ -146,7 +146,7 @@ describe('packExternalModules', () => {
         .resolves.toBeUndefined()
         .then(() =>
           BbPromise.all([
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(0),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(0),
             expect(packagerFactoryMock.get).toHaveBeenCalledTimes(0),
             expect(writeFileSyncStub).toHaveBeenCalledTimes(0)
           ])
@@ -202,7 +202,7 @@ describe('packExternalModules', () => {
         throw new Error('Unexpected call to readFileSync');
       });
       fsExtraMock.pathExists.mockImplementation((p, cb) => cb(null, false));
-      fsExtraMock.copy.mockImplementation((from, to, cb) => cb());
+      fsExtraMock.move.mockImplementation((from, to, cb) => cb());
       packagerFactoryMock.get('npm').getProdDependencies.mockReturnValue(BbPromise.resolve({}));
       packagerFactoryMock.get('npm').getPackagerVersion.mockReturnValue(BbPromise.resolve());
       packagerFactoryMock.get('npm').install.mockReturnValue(BbPromise.resolve());
@@ -218,7 +218,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').getPackagerVersion).toHaveBeenCalledTimes(2),
@@ -273,7 +273,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').getPackagerVersion).toHaveBeenCalledTimes(2),
@@ -368,7 +368,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[2][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules and the lock file should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(2),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(2),
             // Lock file rebase should have been called
             expect(packagerFactoryMock.get('npm').rebaseLockfile).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').rebaseLockfile).toHaveBeenCalledWith(
@@ -433,7 +433,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(0),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(0),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').getPackagerVersion).toHaveBeenCalledTimes(1),
@@ -485,7 +485,7 @@ describe('packExternalModules', () => {
             // The module package JSON and the composite one should have been stored
             expect(writeFileSyncStub).toHaveBeenCalledTimes(0),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(0),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(0),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(0),
@@ -507,7 +507,7 @@ describe('packExternalModules', () => {
             // The module package JSON and the composite one should have been stored
             expect(writeFileSyncStub).toHaveBeenCalledTimes(0),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(0),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(0),
             // npm install and npm prune should not have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(0),
@@ -591,7 +591,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -652,7 +652,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -712,7 +712,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -932,7 +932,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify({ info: 'lockfile' }, null, 2)),
             expect(writeFileSyncStub.mock.calls[2][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules and the lock file should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(2),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(2),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -989,7 +989,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules should have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -1045,7 +1045,7 @@ describe('packExternalModules', () => {
             expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
             expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
             // The modules should not have been copied
-            expect(fsExtraMock.copy).toHaveBeenCalledTimes(0),
+            expect(fsExtraMock.move).toHaveBeenCalledTimes(0),
             // npm ls and npm prune should have been called
             expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
             expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -1123,7 +1123,7 @@ describe('packExternalModules', () => {
                 ),
                 expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
                 // The modules should have been copied
-                expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+                expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
                 // npm ls and npm prune should have been called
                 expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
                 expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -1195,7 +1195,7 @@ describe('packExternalModules', () => {
                   ),
                   expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
                   // The modules should have been copied
-                  expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+                  expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
                   // npm ls and npm prune should have been called
                   expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
                   expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -1247,7 +1247,7 @@ describe('packExternalModules', () => {
                   ),
                   expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
                   // The modules should have been copied
-                  expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+                  expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
                   // npm ls and npm prune should have been called
                   expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
                   expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),
@@ -1318,7 +1318,7 @@ describe('packExternalModules', () => {
               expect(writeFileSyncStub.mock.calls[0][1]).toEqual(JSON.stringify(expectedCompositePackageJSON, null, 2)),
               expect(writeFileSyncStub.mock.calls[1][1]).toEqual(JSON.stringify(expectedPackageJSON, null, 2)),
               // The modules should have been copied
-              expect(fsExtraMock.copy).toHaveBeenCalledTimes(1),
+              expect(fsExtraMock.move).toHaveBeenCalledTimes(1),
               // npm ls and npm prune should have been called
               expect(packagerFactoryMock.get('npm').getProdDependencies).toHaveBeenCalledTimes(1),
               expect(packagerFactoryMock.get('npm').install).toHaveBeenCalledTimes(1),

@@ -6,6 +6,7 @@
 
 module.exports = {
   copy: jest.fn().mockResolvedValue(),
+  move: jest.fn().mockResolvedValue(),
   pathExists: jest.fn().mockResolvedValue(true),
   pathExistsSync: jest.fn().mockReturnValue(false),
   removeSync: jest.fn().mockReturnValue(),
