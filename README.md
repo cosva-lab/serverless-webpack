@@ -662,6 +662,16 @@ On CI systems it is likely that you'll run multiple integration tests with `invo
 sequentially. To improve this, you can do one compile and run multiple invokes on the
 compiled output - it is not necessary to compile again before each and every invoke.
 
+##### Using the CLI option `--no-build`
+
+```bash
+$ serverless webpack
+$ serverless invoke local --function <function-name-1> --no-build
+$ serverless invoke local --function <function-name-2> --no-build
+```
+
+##### Using the parameter `noBuild`
+
 ```yaml
 custom:
   webpack:

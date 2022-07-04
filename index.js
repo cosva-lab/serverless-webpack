@@ -97,6 +97,10 @@ class ServerlessWebpack {
         commands: {
           local: {
             options: {
+              'no-build': {
+                usage: 'Skip Webpack compilation',
+                type: 'boolean'
+              },
               watch: {
                 usage: 'Flag to watch changes',
                 type: 'boolean'
@@ -217,6 +221,10 @@ class ServerlessWebpack {
         BbPromise.bind(this)
           .tap(() => {
             lib.webpack.isLocal = true;
+            // --no-build override
+            if (this.options.build === false) {
+              this.skipCompile = true;
+            }
           })
           .then(this.prepareOfflineInvoke)
           .then(() => (this.skipCompile ? BbPromise.resolve() : this.wpwatch())),
@@ -225,6 +233,10 @@ class ServerlessWebpack {
         BbPromise.bind(this)
           .tap(() => {
             lib.webpack.isLocal = true;
+            // --no-build override
+            if (this.options.build === false) {
+              this.skipCompile = true;
+            }
           })
           .then(this.prepareOfflineInvoke)
           .then(() => (this.skipCompile ? BbPromise.resolve() : this.wpwatch())),
