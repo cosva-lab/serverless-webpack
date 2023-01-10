@@ -6,6 +6,7 @@ env:
   jest: true
 extends:
   - eslint:recommended
+  - plugin:lodash/recommended
   - plugin:promise/recommended
   - plugin:import/errors
   - plugin:import/warnings
@@ -22,6 +23,7 @@ parserOptions:
   sourceType: module
 plugins:
   - promise
+  - lodash
   - import
   - prettier
   - yml
@@ -48,6 +50,7 @@ rules:
   lodash/import-scope: off
   lodash/preferred-alias: off
   lodash/prop-shorthand: off
+  lodash/prefer-lodash-method: [error, { ignoreObjects: [BbPromise, path], ignoreMethods: ['map'] }]
   max-len: [error, { code: 120, ignoreStrings: true, ignoreComments: true, ignoreTemplateLiterals: true }]
   prettier/prettier:
     [
